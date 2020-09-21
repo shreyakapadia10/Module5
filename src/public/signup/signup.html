@@ -1,0 +1,101 @@
+<!-- Registration Form -->
+
+<div class="container">
+  <fieldset>
+    <legend class="reg-title">Registration Form</legend>
+    <form name="regForm" novalidate>
+      <input type="text" name="firstname" placeholder="Enter First Name"
+      ng-model = "regCtrl.user.firstname"
+      minlength = 4
+      ng-maxlength = 10
+      required>
+      {{ regCtrl.user.firstname }}
+      <span
+        ng-if="(regForm.firstname.$error.minlength || regForm.firstname.$error.required)
+        && regForm.firstname.$touched">
+          Firstname must be at least 4 characters long
+      </span>
+
+      <span
+        ng-if="regForm.firstname.$error.maxlength && regForm.firstname.$touched">
+          Firstname must not be longer than 10 characters long
+      </span>
+      <br>
+
+      <input type="text" name="lastname" placeholder="Enter Last Name"
+      ng-model = "regCtrl.user.lastname"
+      minlength = 4
+      ng-maxlength = 10
+      required>
+      {{ regCtrl.user.lastname }}
+      <span
+        ng-if="(regForm.lastname.$error.minlength || regForm.lastname.$error.required)
+        && regForm.lastname.$touched">
+          Lastname must be at least 4 characters long
+      </span>
+
+      <span
+        ng-if="regForm.lastname.$error.maxlength && regForm.lastname.$touched">
+          Lastname must not be longer than 10 characters long
+      </span>
+      <br>
+
+      <input type="email" name="email" placeholder="Enter Email ID"
+      ng-model="regCtrl.user.email"
+      required>
+      {{ regCtrl.user.email }}
+
+      <span
+        ng-if="regForm.email.$invalid && regForm.email.$touched">
+          Please Enter Valid Email ID
+      </span>
+      <br>
+
+      <input type="text" name="phone" placeholder="###-###-####"
+      ng-model="regCtrl.user.phone"
+      pattern="(\d{3})-(\d{3})-(\d{4})"
+      required>
+      {{ regCtrl.user.phone }}
+      <span
+        ng-if="(regForm.phone.$error.required || regForm.phone.$invalid) && regForm.phone.$touched">
+          Phone number must be in form of ###-###-####
+      </span>
+      <br>
+
+      <input type="text" name="favmenu" placeholder="Short Name of Fav Menu"
+      ng-model="regCtrl.user.favmenu"
+      ng-focus="focused = true"
+      ng-blur="regCtrl.validateFavourite(); focused = false"
+      ng-model="regCtrl.user.favmenu"
+      required>
+      <div ng-if="regForm.favourite.$error.required && regForm.favourite.$touched">
+        <span>Please input your favourite dish.</span>
+      </div>
+
+      <div id='fav-error' ng-if="!focused && (!regForm.favmenu.$error.required) && regCtrl.invalidDish">
+        <span>No such menu number exists.</span>
+      </div>
+
+      <br>
+
+      <button type="submit" name="submit"
+      ng-disabled="regForm.$invalid || regCtrl.shortNames.indexOf(regCtrl.user.favmenu.toLowerCase()) === -1"
+      ng-click="regCtrl.submit()"
+      class="sign-up-submit"> Submit
+      </button>
+
+      <div style="margin-top: 10px;">
+        Form Valid? {{ regForm.$valid }}
+      </div>
+    </form>
+  </fieldset>
+
+  <div id='save' style="margin-top: 10px;" ng-if='regCtrl.save && !regCtrl.invalidDish'>
+    <span>Information Saved Successfully!</span>
+    <a ui-sref='public.myinfo'>Check Your Information</a>
+  </div>
+
+
+</div>
+
+<!-- Registration Form End -->

@@ -1,0 +1,52 @@
+body {
+  font-size: 1.2em;
+}
+input {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: black;
+}
+button {
+  font-size: 24px;
+}
+
+.ng-touched.ng-valid{
+  border: 3px green solid;
+}
+
+.ng-touched.ng-invalid{
+  border: 3px red solid;
+}
+
+#save{
+  font-size: 2em;
+  color: green;
+  font-weight: bolder;
+}
+
+#fav-error{
+  font-size: 2em;
+  color: red;
+  font-weight: bolder;
+}
+
+.reg-title{
+  color: white;
+}
+
+#table{
+  font-size: 1.6em;
+  font-weight: bolder;
+}
+
+table tr td{
+  width: auto;
+}
+
+.sign-up-submit {
+  color: black;
+}
+
+.sign-up-submit:disabled {
+  color: grey;
+}
